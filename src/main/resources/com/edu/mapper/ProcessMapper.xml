@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.edu.mapper.ProcessMapper">
+
+    <insert id="addDefault">
+        insert into process(cid,first,second)
+        values(#{cid}, #{first}, #{second})
+    </insert>
+
+
+    <update id="updateProcess">
+        update process
+        <set>
+            <if test="first != null">
+                first = #{first} ,
+            </if>
+            <if test="second != null">
+                second = #{second}
+            </if>
+        </set>
+        where cid = #{cid}
+    </update>
+
+
+    <select id="selectByCid" resultType="com.edu.pojo.Process">
+        select * from process where cid = #{cid}
+    </select>
+
+
+    <select id="selectBycid" resultType="com.edu.pojo.Process">
+        select * from process where cid = #{cid}
+    </select>
+
+
+</mapper>

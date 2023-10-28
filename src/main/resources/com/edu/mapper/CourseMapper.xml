@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.edu.mapper.CourseMapper">
+
+
+
+    <select id="selectAll" resultType="com.edu.pojo.Course">
+        select * from course
+    </select>
+
+
+    <delete id="deleteCourse">
+        delete from course where cid = #{cid}
+    </delete>
+
+    <insert id="addCourse">
+        insert into course(cid,cname,lecturer,header)
+        values( #{cid}, #{cname}, #{lecturer}, #{header})
+    </insert>
+
+
+    <select id="selectByCid" resultType="com.edu.pojo.Course">
+        select *
+        from course
+        where cid = #{cid}
+    </select>
+
+</mapper>

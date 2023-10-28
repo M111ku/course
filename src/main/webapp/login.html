@@ -1,0 +1,156 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>登录</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--  <h3 align="center">欢迎登录</h3>-->
+<!--  <hr/>-->
+<!--  <br/>-->
+<!--  <br/>-->
+<!--  <form action="login" method="get">-->
+<!--    <table align="center">-->
+<!--      <tr>-->
+<!--        <th>姓名</th>-->
+<!--        <td><input type="text" name="username"/></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <th>密码</th>-->
+<!--        <td><input type="password" name="password"/></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td align="right" colspan="2">-->
+<!--          <input type="submit"/>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </form>-->
+
+
+<!--</body>-->
+
+<!--<script>-->
+<!--  //给用户绑定名输入框绑定 失去焦点事件-->
+<!--  document.getElementById("username").onblur = function(){-->
+<!--    var username = this.value;-->
+<!--    // 创建 XMLHttpRequest 对象-->
+<!--    const xhttp = new XMLHttpRequest();-->
+
+<!--    // 发送请求-->
+<!--    xhttp.open("GET", "selectUsernameServlet="+username);-->
+<!--    xhttp.send();-->
+
+<!--    // 定义回调函数-->
+<!--        xhttp.onload = function() {-->
+<!--          // 您可以在这里使用数据-->
+<!--          if(this.readyState == 4 && this.status == 200){-->
+<!--            if(this.responseText == "true"){-->
+<!--              document.getElementById("username_err").style.display = '';-->
+<!--            }else{-->
+<!--              document.getElementById("username_err").style.display = 'none';-->
+<!--            }-->
+<!--          }-->
+<!--        }-->
+<!--  }-->
+<!--</script>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>欢迎登录</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    .login-box {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+    .login-box h3 {
+      text-align: center;
+      padding-top: 30px;
+      color: #444;
+    }
+    .login-box hr {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    .login-box table {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .login-box th,
+    td {
+      padding: 10px;
+    }
+    .login-box th {
+      width: 20%;
+      font-weight: normal;
+      color: #666;
+      text-align: left;
+    }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    .login-box input[type="text"]:focus,
+    .login-box input[type="password"]:focus {
+      outline: none;
+      box-shadow: inset 0px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .login-box input[type="submit"] {
+      margin-top: 20px;
+      background-color: #00bcd4;
+      border: none;
+      color: #fff;
+      padding: 10px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .login-box input[type="submit"]:hover {
+      background-color: #008c9e;
+    }
+  </style>
+</head>
+<body>
+<div class="login-box">
+  <h3>登录</h3>
+  <form action="login" method="get">
+    <table>
+      <tr>
+        <th>账号</th>
+        <td><input type="text" name="username" /></td>
+      </tr>
+      <tr>
+        <th>密码</th>
+        <td><input type="password" name="password" /></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="登录" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>
+
+

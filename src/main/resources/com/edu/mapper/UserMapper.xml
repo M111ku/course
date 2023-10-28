@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.edu.mapper.UserMapper">
+
+    <!--    namespace唯一表示mapper id唯一表示sql resultType表示类名-->
+<!--    数据库表的名称和pojo类的名称需要一样
+        如果不一样 1.sql 写别名 as
+                 2.sql片段
+                *3.resultMap
+                    1> 定义resultMap标签
+                    2> 使用resultMap属性替换 resultType属性
+-->
+    <select id="selectAllUsers" resultType="com.edu.pojo.User">
+        select * from users;
+    </select>
+
+
+<!--    参数站位符
+        1.#{} 显示？ 防止sql注入
+        2.${}
+-->
+
+    <select id="selectByUsername" resultType="com.edu.pojo.User">
+        select *
+        from users
+        where username = #{username};
+    </select>
+
+
+    <!--    条件查询 、动态sql-->
+
+
+    <delete id="deleteById">
+        delete from users where uid = #{uid}
+    </delete>
+
+
+    <insert id="addUser">
+        insert into users(uid,username,password,identity,name)
+        values( #{uid}, #{username}, #{password}, #{identity}, #{name})
+    </insert>
+
+
+    <update id="updateUser">
+        update users
+        username =#{username}
+        password = #{password}
+        identity = #{identity}
+        name = #{name}
+        where uid = #{uid}
+    </update>
+
+
+
+
+    <select id="selectTeacher" resultType="com.edu.pojo.User">
+        select * from users where identity = "3" or identity = "2"
+    </select>
+
+
+    <select id="selectByUid" resultType="com.edu.pojo.User">
+        select * from users
+        where uid = #{uid}
+    </select>
+
+
+    <select id="selectTeacherByUid" resultType="com.edu.pojo.User">
+        select *
+        from users
+        where uid = #{uid}  and  (identity = '2' or identity = '3')
+    </select>
+</mapper>

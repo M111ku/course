@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.edu.mapper.ApplyMapper">
+
+
+    <insert id="addApply">
+        insert into apply(courseid,studentid,reason,prove,state,reject)
+        values( #{courseid}, #{studentid}, #{reason}, #{prove}, #{state},#{reject})
+    </insert>
+
+
+    <update id="updateApply">
+        update apply
+        <set>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="prove != null and prove != ''">
+                prove = #{prove},
+            </if>
+            <if test="reason != null and reason != ''">
+                reason = #{reason},
+            </if>
+            <if test="reject != null and reject != ''">
+                reject = #{reject},
+            </if>
+        </set>
+        where studentid = #{studentid}
+        and courseid = #{courseid}
+    </update>
+
+
+
+
+
+    <delete id="deleteApply">
+        delete from apply where studentid = #{studentid} and courseid = #{courseid}
+    </delete>
+
+
+    <select id="selectApplyByStudentid" resultType="com.edu.pojo.Apply">
+        select *
+        from apply
+        where studentid = #{studentid};
+    </select>
+
+
+    <select id="selectByCidAndSid" resultType="com.edu.pojo.Apply">
+        select * from apply where studentid=#{studentid} and courseid = #{courseid}
+    </select>
+
+    <select id="selectAllApply" resultType="com.edu.pojo.Apply">
+        select * from apply where studentid = #{studentid}
+    </select>
+
+
+    <select id="selectTeacherApply" resultType="com.edu.pojo.Apply">
+        select DISTINCT courseid,studentid,reason,prove,state,reject,first,second
+        from apply,process
+        where apply.courseid = process.cid and (first = #{first} or second = #{second})
+    </select>
+
+
+    <select id="selectTeacherApplyByPage" resultType="com.edu.pojo.Apply">
+        select DISTINCT courseid,studentid,reason,prove,state,reject,first,second
+        FROM apply
+        INNER JOIN process ON apply.courseid = process.cid
+        WHERE first = #{name} OR second = #{name}
+        limit #{begin},#{size}
+    </select>
+
+
+    <select id="selectTeacherApplyTotalCount" resultType="java.lang.Integer">
+        select count(*)
+        FROM apply
+        INNER JOIN process ON apply.courseid = process.cid
+        WHERE first = #{name} OR second = #{name}
+    </select>
+
+
+    <select id="selectAll" resultType="com.edu.pojo.Apply">
+        select DISTINCT courseid,studentid,reason,prove,state,reject,first,second
+        from apply,process
+        where apply.courseid = process.cid
+    </select>
+
+
+
+    <select id="selectStudentApplyByPage" resultType="com.edu.pojo.Apply">
+        select *
+        from apply
+        where studentid = #{studentid}
+        limit #{begin},#{size}
+    </select>
+
+
+    <select id="selectStudentApplyTotalCount" resultType="java.lang.Integer">
+        select count(*)
+        from apply
+        where studentid = #{studentid}
+    </select>
+
+
+    <select id="selectMultip" resultType="com.edu.pojo.Apply">
+        select *
+        from apply
+        where studentid like #{studentid} and courseid like #{courseid}
+        and state like #{state}
+    </select>
+
+
+    <select id="selectStateIsFiveOrSeven" resultType="com.edu.pojo.Apply">
+        select DISTINCT * from apply
+        where state = '5' or state = '7'
+    </select>
+
+
+</mapper>

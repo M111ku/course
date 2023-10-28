@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.edu.mapper.TakesMapper">
+
+
+    <select id="selectCourseByUid" resultType="com.edu.pojo.Takes">
+        select studentid,courseid,cname,lecturer,header,first,second
+        from course,takes,process
+        where course.cid = takes.courseid and course.cid = process.cid and takes.studentid = #{studentid}
+    </select>
+</mapper>
